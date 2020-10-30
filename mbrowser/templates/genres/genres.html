@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main id="main">
+    <header id="article-header">
+        <h1>Choose a Genre</h1>
+    </header>
+    <div class="genre_button_container">
+        {% for genre in all_genres %}
+        <div class="genre_button" onclick="location.href='{{ genre_urls[genre] }}'">{{genre}}</div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
+
+<!-- {% for movie in movies %}
+<article id="article">
+    {% if movies_title == 'Showing 1000 Movies By Rank' %}
+    <h2><span class='rank'>{{movie.movie_id}}</span> {{movie.title}}</h2>
+    {% else %}
+    <h2>{{movie.title}}</h2>
+    {% endif %}
+    <p class='year-text'>{{movie.release_year}}</p>
+    <div style="float:left">
+        {% for genre in movie.genres %}
+        <button class="btn-general" onclick="location.href='{{ genre_urls[genre.name] }}'">{{ genre.name }}</button>
+        {% endfor %}
+    </div>
+</article>
+{% endfor %} -->

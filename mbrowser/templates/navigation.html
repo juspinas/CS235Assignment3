@@ -1,0 +1,11 @@
+<div class="topnav">
+    <a class="" href="{{ url_for('home_bp.home') }}">Home</a>
+    <a href="{{ url_for('movies_bp.movies_by_title', letter='#') }}">Browse</a>
+    <a href="{{ url_for('movies_bp.movies_by_rank') }}">Rankings</a>
+    <a href="{{ url_for('genres_bp.genres') }}">Genres</a>
+    <div style='float:right'>
+        <a href="{{ url_for('authentication_bp.register') }}">Register</a>
+        <a href="{{ url_for('authentication_bp.login') }}">Login</a>
+        <a href="{{ url_for('authentication_bp.logout') }}" disabled>Logout</a>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main id="main">
+    <!-- <header id="article-header">
+        <h1>{{ movie.title }}</h1>
+    </header> -->
+    <div id="movie_page_container" class="movies_container">
+        <div id='movie_page_card' class="movie_card">
+            <div style="float:right">
+                <h3>Starring:</h3>
+                <ul>
+                    {% for actor in movie.actors %}
+                    <li class="actor-text" onclick="location.href='{{ actor_urls[actor.name] }}'">{{ actor.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <h2><span class='rank'>{{movie.movie_id}}</span> {{movie.title}} <span class='year-text'>{{movie.release_year}}</span></h2>
+            {% for director in movie.directors %}
+            <h3>Directed by <span class='director-text' onclick="location.href='{{ director_urls[director.name] }}'">{{ director.name }}</span></h3>
+            {% endfor %}
+            <!-- <h3 class='year-text'></h3> -->
+            <div style="float:left">
+                {% for genre in movie.genres %}
+                <button class="btn-general" onclick="location.href='{{ genre_urls[genre.name] }}'">{{ genre.name }}</button>
+                {% endfor %}
+            </div>
+            </br>
+            </br>
+            <p class='movie-description'>{{ movie.description }}</p>
+        </div>
+    </div>
+    <div style="float:right">
+        <button class="btn-general" onclick="location.href='{{ movie.add_review_url }}'">Write Review</button>
+    </div>
+    {% if movie.reviews|length > 0 %}
+    <div style="clear:both">
+        {% for review in movie.reviews %}
+            <p>{{review.review_text}}, by {{review.username}}, {{review.timestamp}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</main>
+{% endblock %}
