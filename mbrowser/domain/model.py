@@ -67,7 +67,7 @@ class ModelException(Exception):
 
 # ________________________________________________________________________________________________________________________
 class Movie:
-    def __init__(self, title: str, release_year: int, movie_id: int, description: str):
+    def __init__(self, title: str, release_year: int, id: int, description: str):
         if title == None or type(title) is not str:
             self.__title = None
         else:
@@ -82,10 +82,10 @@ class Movie:
             except ValueError:
                 release_year = None
 
-        if type(movie_id) is not int:
-            self.__movie_id = None
+        if type(id) is not int:
+            self.__id = None
         else:
-            self.__movie_id = movie_id
+            self.__id = id
 
         if description == None or type(description) is not str:
             self.__description = ""
@@ -109,8 +109,8 @@ class Movie:
         return self.__release_year
 
     @property
-    def movie_id(self) -> int:
-        return self.__movie_id
+    def id(self) -> int:
+        return self.__id
 
     @property
     def description(self) -> str:
@@ -177,7 +177,7 @@ class Movie:
         # if self.title == other.title:
         #     return self.release_year < other.release_year
         # return self.title < other.title
-        return self.movie_id < other.movie_id
+        return self.id < other.id
     
     def __hash__(self):
         combinedStr = self.__title + str(self.__release_year)
