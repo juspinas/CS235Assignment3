@@ -132,7 +132,7 @@ def search_actors(search: str, repo: AbstractRepository):
 
 def movie_to_dict(movie: Movie):
     movie_dict = {
-        'movie_id': movie.movie_id,
+        'movie_id': movie.id,
         'title': movie.title,
         'release_year': movie.release_year,
         'description' : movie.description,
@@ -152,7 +152,7 @@ def movies_to_dict(movies: Iterable[Movie]):
 def review_to_dict(review: Review):
     review_dict = {
         'username': review.user.username,
-        'movie_id': review.movie.movie_id,
+        'movie_id': review.movie.id,
         'review_text': review.review,
         'timestamp': review.timestamp
     }
@@ -166,7 +166,7 @@ def reviews_to_dict(reviews: Iterable[Review]):
 def director_to_dict(director: Director):
     director_dict = {
         'name': director.director_full_name,
-        'director_movies': [movie.movie_id for movie in director.director_movies]
+        'director_movies': [movie.id for movie in director.director_movies]
     }
     return director_dict
 
@@ -176,7 +176,7 @@ def directors_to_dict(directors: Iterable[Director]):
 def actor_to_dict(actor: Actor):
     actor_dict = {
         'name': actor.actor_full_name,
-        'actor_movies': [movie.movie_id for movie in actor.actor_movies]
+        'actor_movies': [movie.id for movie in actor.actor_movies]
     }
     return actor_dict
 
@@ -186,7 +186,7 @@ def actors_to_dict(actors: Iterable[Actor]):
 def genre_to_dict(genre: Genre):
     genre_dict = {
         'name': genre.genre_name,
-        'genre_movies': [movie.movie_id for movie in genre.genre_movies]
+        'genre_movies': [movie.id for movie in genre.genre_movies]
     }
     return genre_dict
 

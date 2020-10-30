@@ -30,7 +30,7 @@ class MemoryRepository(AbstractRepository):
 
     def add_movie(self, movie: Movie):
         insort_left(self._movies, movie)
-        self._movies_index[movie.movie_id] = movie
+        self._movies_index[movie.id] = movie
 
     def get_movie(self, id: int) -> Movie:
         movie = None
@@ -49,11 +49,11 @@ class MemoryRepository(AbstractRepository):
         target_movie = Movie(
             title=None,
             release_year=target_year,
-            movie_id=None,
+            id=None,
             description='',
         )
         matching_movies = list()
-
+        
         try:
             for movie in self._movies:
                 if movie.release_year == target_year:
@@ -88,14 +88,13 @@ class MemoryRepository(AbstractRepository):
         # Fetch the reviews.
         movies = [self._movies_index[id] for id in existing_ids]
         return movies
-
     def get_movie_ids_for_director(self, director_full_name: str):
         # Linear search, to find the first occurrence of a Tag with the name tag_name.
         director = next((director for director in self._directors if director.director_full_name == director_full_name), None)
 
         # Retrieve the ids of articles associated with the Tag.
         if director is not None:
-            movie_ids = [movie.movie_id for movie in director.director_movies]
+            movie_ids = [movie.id for movie in director.director_movies]
         else:
             # No Tag with name tag_name, so return an empty list.
             movie_ids = list()
@@ -108,7 +107,7 @@ class MemoryRepository(AbstractRepository):
 
         # Retrieve the ids of articles associated with the Tag.
         if actor is not None:
-            movie_ids = [movie.movie_id for movie in actor.actor_movies]
+            movie_ids = [movie.id for movie in actor.actor_movies]
         else:
             # No Tag with name tag_name, so return an empty list.
             movie_ids = list()
@@ -121,7 +120,7 @@ class MemoryRepository(AbstractRepository):
 
         # Retrieve the ids of articles associated with the Tag.
         if genre is not None:
-            movie_ids = [movie.movie_id for movie in genre.genre_movies]
+            movie_ids = [movie.id for movie in genre.genre_movies]
         else:
             # No Tag with name tag_name, so return an empty list.
             movie_ids = list()
@@ -217,7 +216,7 @@ def load_movies_and_data(data_path: str, repo: MemoryRepository):
         movie = Movie(
             title=data_row[1],
             release_year=data_row[6],
-            movie_id=movie_key,
+            id=movie_key,
             description=data_row[3],
             # actors
             # date=date.fromisoformat(data_row[1]),

@@ -59,7 +59,7 @@ def test_empty_actore_construction(empty_actor):
 def test_movie_construction(movie):
     assert movie.title == 'Moana'
     assert movie.release_year == 2016
-    assert movie.movie_id == 1
+    assert movie.id == 1
     assert movie.description == ""
     assert movie.number_of_reviews == 0
     assert movie.runtime_minutes == 0

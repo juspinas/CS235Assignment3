@@ -43,7 +43,7 @@ def test_repository_can_retrieve_movie(in_memory_repo):
     # Check that the Movie has the expected title.
     assert movie.title == 'Sing'
     assert movie.release_year == 2016
-    assert movie.movie_id == 4
+    assert movie.id == 4
     assert movie.has_director(Director('Christophe Lourdelet'))
 
     # Check that the Movie has expected actors.
